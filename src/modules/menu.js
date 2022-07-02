@@ -7,7 +7,7 @@ const menu = () => {
     };
 
     main.addEventListener('click', (e) => {
-        if (e.target.closest('.menu') || !e.target.closest('menu')) {
+        if (e.target.closest('.menu')) {
             handleMenu();
         } else if (e.target.closest('a[href="#service-block"]')) {
             e.preventDefault();
@@ -15,6 +15,8 @@ const menu = () => {
                 behavior: 'smooth',
                 block: 'start'
             });
+        } else if (!e.target.closest('menu')) {
+            menu.classList.remove('active-menu');
         }
     });
 
