@@ -4,8 +4,6 @@ const formValidator = () => {
     const inputEmail = document.querySelectorAll('input[type=email]');
     const formName = document.querySelectorAll('#form2-name, .mess, .form-name');
 
-    console.log(formName);
-
     formName.forEach(item => {
         item.addEventListener('input', (e) => {
             e.target.value = e.target.value.replace(/[^а-яА-Я- ]/, "");

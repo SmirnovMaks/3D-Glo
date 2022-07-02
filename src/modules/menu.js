@@ -1,36 +1,36 @@
 const menu = () => {
-    const menuBtn = document.querySelector('.menu');
     const menu = document.querySelector('menu');
-    const closeBtn = menu.querySelector('.close-btn');
-    const menuItems = menu.querySelectorAll('ul>li>a');
-    const nextSlideBtn = document.querySelector('a[href="#service-block"]');
-
-    nextSlideBtn.addEventListener('click', (event) => {
-        event.preventDefault();
-        document.querySelector("#service-block").scrollIntoView({
-            behavior: 'smooth',
-            block: 'start'
-        });
-    });
+    const main = document.querySelector('main');
 
     const handleMenu = () => {
         menu.classList.toggle('active-menu');
     };
 
-    menuBtn.addEventListener('click', handleMenu);
-    closeBtn.addEventListener('click', handleMenu);
-
-    menuItems.forEach(menuItem => {
-        menuItem.addEventListener('click', (event) => {
+    main.addEventListener('click', (e) => {
+        if (e.target.closest('.menu')) {
             handleMenu();
-            event.preventDefault();
-            const id = menuItem.getAttribute('href');
+        } else if (e.target.closest('a[href="#service-block"]')) {
+            e.preventDefault();
+            document.querySelector("#service-block").scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            });
+        }
+    });
+
+    menu.addEventListener('click', (e) => {
+        if (e.target.closest('.close-btn')) {
+            handleMenu();
+        } else if (e.target.closest('ul>li>a')) {
+            handleMenu();
+            e.preventDefault();
+            const id = e.target.getAttribute('href');
             document.querySelector(id).scrollIntoView({
                 behavior: 'smooth',
                 block: 'start'
             });
-        });
+        }
     });
-
 };
+
 export default menu;
