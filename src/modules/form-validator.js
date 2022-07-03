@@ -4,29 +4,19 @@ const formValidator = () => {
     const inputEmail = document.querySelectorAll('input[type=email]');
     const formName = document.querySelectorAll('#form2-name, .mess, .form-name');
 
-    formName.forEach(item => {
-        item.addEventListener('input', (e) => {
-            e.target.value = e.target.value.replace(/[^а-яА-Я- ]/, "");
+    const validator = (item, regExp) => {
+        item.forEach(item => {
+            item.addEventListener('input', (e) => {
+                e.target.value = e.target.value.replace(regExp, "");
+            });
         });
-    });
+    };
 
-    inputTel.forEach(item => {
-        item.addEventListener('input', (e) => {
-            e.target.value = e.target.value.replace(/[^-)(\d]/, "");
-        });
-    });
+    validator(formName, /[^а-яА-Я- ]/);
+    validator(inputTel, /[^-)(\d]/);
+    validator(inputEmail, /[^ @ - _ .!~*'\w]/);
+    validator(calcItem, /\D+/);
 
-    inputEmail.forEach(item => {
-        item.addEventListener('input', (e) => {
-            e.target.value = e.target.value.replace(/[^ @ - _ .!~*'\w]/, "");
-        });
-    });
-
-    calcItem.forEach(item => {
-        item.addEventListener('input', (e) => {
-            e.target.value = e.target.value.replace(/\D+/, "");
-        });
-    });
 };
 
 export default formValidator;
