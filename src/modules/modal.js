@@ -1,22 +1,38 @@
+import {
+    animate
+} from './helpers';
+
 const modal = () => {
     const modal = document.querySelector('.popup');
     const buttons = document.querySelectorAll('.popup-btn');
     let count = 0;
 
-    const modalAnimate = () => {
-        const animate = requestAnimationFrame(modalAnimate);
-        count++;
-        if (count < 30) {
-            modal.style.opacity = (count / 30);
-        } else {
-            cancelAnimationFrame(animate);
-        }
-    };
+    // const modalAnimate = () => {
+    //     const animate = requestAnimationFrame(modalAnimate);
+    //     count++;
+    //     if (count < 30) {
+    //         modal.style.opacity = (count / 30);
+    //     } else {
+    //         cancelAnimationFrame(animate);
+    //     }
+    // };
 
     buttons.forEach(btn => {
         btn.addEventListener('click', () => {
             modal.style.display = 'block';
-            modalAnimate();
+            // modalAnimate();
+
+            animate({
+                duration: 500,
+                timing(timeFraction) {
+                    return timeFraction;
+                },
+                draw(progress) {
+                    modal.style.opacity = progress;
+                    console.log(progress);
+                }
+
+            });
 
         });
     });
