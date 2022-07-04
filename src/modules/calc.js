@@ -59,8 +59,6 @@ const calc = (price = 100) => {
             },
             draw(progress) {
                 total.textContent = Math.round(totalValue * progress);
-
-                console.log(progress);
             }
 
         });

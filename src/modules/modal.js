@@ -29,11 +29,8 @@ const modal = () => {
                 },
                 draw(progress) {
                     modal.style.opacity = progress;
-                    console.log(progress);
                 }
-
             });
-
         });
     });
 
