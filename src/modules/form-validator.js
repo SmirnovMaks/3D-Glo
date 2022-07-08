@@ -1,21 +1,28 @@
 const formValidator = () => {
-    const calcItem = document.querySelectorAll('input.calc-item');
-    const inputTel = document.querySelectorAll('input[type=tel]');
-    const inputEmail = document.querySelectorAll('input[type=email]');
-    const formName = document.querySelectorAll('#form2-name, .mess, .form-name');
+    const inputTel = document.querySelectorAll('input[name="user_phone"]');
+    const inputEmail = document.querySelectorAll('input[name="user_email"]');
+    const inputName = document.querySelectorAll('input[name="user_name"]');
+    const inputMessage = document.querySelectorAll('input[name="user_message"]');
 
-    const validator = (item, regExp) => {
-        item.forEach(item => {
+    console.log(inputMessage);
+    const validator = (items, regExp) => {
+        items.forEach(item => {
             item.addEventListener('input', (e) => {
-                e.target.value = e.target.value.replace(regExp, "");
+                if (!regExp.test(e.target.value) && e.target.value !== '') {
+                    e.target.classList.add('success');
+                } else {
+                    e.target.classList.remove('success');
+                }
             });
         });
     };
 
-    validator(formName, /[^а-яА-Я- ]/);
-    validator(inputTel, /[^-)(\d]/);
+    // (/[\-\.\w]+@([\w]+\.)+[\w]+/gi)
+
+    validator(inputName, /[^а-яА-Я ]/);
+    validator(inputTel, /[^-+)(\d]/);
     validator(inputEmail, /[^ @ - _ .!~*'\w]/);
-    validator(calcItem, /\D+/);
+    validator(inputMessage, /[^а-яА-Я\d ,.!?]/);
 
 };
 

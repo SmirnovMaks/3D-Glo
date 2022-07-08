@@ -9,6 +9,13 @@ const calc = (price = 100) => {
     const calcCount = document.querySelector('.calc-count');
     const calcDay = document.querySelector('.calc-day');
     const total = document.getElementById('total');
+    const calcItem = document.querySelectorAll('input.calc-item');
+
+    calcItem.forEach(item => {
+        item.addEventListener('input', (e) => {
+            e.target.value = e.target.value.replace(/\D+/, "");
+        });
+    });
 
     // const enumerationTotal = (num) => {
     //     const time = 1;
