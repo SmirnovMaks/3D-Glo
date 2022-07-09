@@ -16,7 +16,6 @@ const sendForm = ({
                 success = false;
             }
         });
-
         return success;
     };
 
@@ -35,37 +34,49 @@ const sendForm = ({
         const formData = new FormData(form);
         const formBody = {};
 
-        statusBlock.textContent = loadText;
         form.append(statusBlock);
 
         formData.forEach((val, key) => {
-            formBody[key] = val;
+            if (val) {
+                formBody[key] = val;
+            }
         });
 
         someElem.forEach(elem => {
             const element = document.getElementById(elem.id);
 
-            if (elem.type === 'block') {
+            if (elem.type === 'block' && +element.textContent !== 0) {
                 formBody[elem.id] = element.textContent;
-            } else if (elem.type === 'input') {
+            } else if (elem.type === 'input' && element.value !== '') {
                 formBody[elem.id] = element.value;
             }
         });
 
         if (validate(formElements)) {
+            statusBlock.textContent = loadText;
+            statusBlock.style.color = 'white';
+
             sendData(formBody)
                 .then((data) => {
                     statusBlock.textContent = successText;
-
+                    statusBlock.style.color = 'white';
                     formElements.forEach(input => {
                         input.value = '';
                     });
+                    setTimeout(() => {
+                        statusBlock.textContent = '';
+                    }, 3000);
                 })
                 .catch(error => {
                     statusBlock.textContent = errorText;
+                    statusBlock.style.color = 'white';
                 });
         } else {
-            alert('Данные не валидны');
+            statusBlock.textContent = 'Ошибка! Введите данные правильно';
+            statusBlock.style.color = 'white';
+            setTimeout(() => {
+                statusBlock.textContent = '';
+            }, 3000);
         }
     };
 

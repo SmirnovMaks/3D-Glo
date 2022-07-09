@@ -1,16 +1,17 @@
 const menu = () => {
     const menu = document.querySelector('menu');
-    const main = document.querySelector('main');
+    const body = document.querySelector('body');
 
     const handleMenu = () => {
         menu.classList.toggle('active-menu');
     };
 
-    main.addEventListener('click', (e) => {
+    body.addEventListener('click', (e) => {
         if (e.target.closest('.menu')) {
             handleMenu();
         } else if (e.target.closest('a[href="#service-block"]')) {
             e.preventDefault();
+            menu.classList.remove('active-menu');
             document.querySelector("#service-block").scrollIntoView({
                 behavior: 'smooth',
                 block: 'start'
@@ -18,6 +19,7 @@ const menu = () => {
         } else if (!e.target.closest('menu')) {
             menu.classList.remove('active-menu');
         }
+
     });
 
     menu.addEventListener('click', (e) => {

@@ -7,7 +7,7 @@ import slider from "./modules/slider";
 import calc from "./modules/calc";
 import sendForm from "./modules/sendForm";
 
-timer('29 july 2022');
+timer('9 july 2022 20:54');
 menu();
 modal();
 formValidator();
@@ -23,8 +23,16 @@ sendForm({
 
 });
 sendForm({
-    formId: 'form2'
+    formId: 'form2',
+    someElem: [{
+        type: 'block',
+        id: 'total'
+    }]
 });
 sendForm({
-    formId: 'form3'
+    formId: 'form3',
+    someElem: [{
+        type: 'block',
+        id: 'total'
+    }]
 });
