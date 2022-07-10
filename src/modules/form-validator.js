@@ -17,12 +17,15 @@ const formValidator = () => {
             item.addEventListener('blur', (e) => {
                 if (regExp2.test(e.target.value) && e.target.value !== '') {
                     e.target.classList.add('success');
-                    item.style.borderStyle = 'none';
+                    e.target.classList.remove('error');
                 } else {
                     e.target.classList.remove('success');
-                    item.style.borderColor = 'red';
-                    item.style.borderStyle = 'solid';
+                    e.target.classList.add('error');
                 }
+            });
+            item.addEventListener('invalid', (e) => {
+                e.preventDefault();
+                item.classList.add('error');
             });
         });
     };

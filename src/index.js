@@ -7,7 +7,7 @@ import slider from "./modules/slider";
 import calc from "./modules/calc";
 import sendForm from "./modules/sendForm";
 
-timer('9 july 2022 20:54');
+timer('22 july 2022');
 menu();
 modal();
 formValidator();
