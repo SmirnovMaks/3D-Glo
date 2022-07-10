@@ -24,6 +24,7 @@ const menu = () => {
 
     menu.addEventListener('click', (e) => {
         if (e.target.closest('.close-btn')) {
+            e.preventDefault();
             handleMenu();
         } else if (e.target.closest('ul>li>a')) {
             handleMenu();
